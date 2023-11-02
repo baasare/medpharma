@@ -16,7 +16,8 @@ def get_and_authenticate_user(email, password):
         try:
             User.objects.get(email=email)
         except User.DoesNotExist:
-            raise serializers.ValidationError("Invalid email/password. Please try again!")
+            raise serializers.ValidationError(
+                "Invalid email/password. Please try again!")
 
     return user
 

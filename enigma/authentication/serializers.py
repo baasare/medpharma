@@ -42,7 +42,8 @@ class PasswordChangeSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs['password1'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
+            raise serializers.ValidationError(
+                {"password": "Password fields didn't match."})
 
         return attrs
 
@@ -127,7 +128,8 @@ class LoginSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
         refresh = self.get_token(self.user)
-        user_logged_in.send(sender=self.user.__class__, request=self.context['request'], user=self.user)
+        user_logged_in.send(sender=self.user.__class__,
+                            request=self.context['request'], user=self.user)
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
 

@@ -53,7 +53,8 @@ class AuthViewSet(viewsets.GenericViewSet):
             serializer.is_valid(raise_exception=True)
             token = RefreshToken(serializer.validated_data['refresh'])
             token.blacklist()
-            user_logged_out.send(sender=request.user.__class__, request=request, user=request.user)
+            user_logged_out.send(sender=request.user.__class__,
+                                 request=request, user=request.user)
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except TokenError as e:
             print(e)
@@ -93,7 +94,8 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         try:
-            user_id = smart_str(urlsafe_base64_decode(serializer.data["uid_64"]))
+            user_id = smart_str(urlsafe_base64_decode(
+                serializer.data["uid_64"]))
             user_token = serializer.data["token"]
             user = User.objects.get(id=user_id)
             if not PasswordResetTokenGenerator().check_token(user, user_token):
@@ -129,7 +131,8 @@ class AuthViewSet(viewsets.GenericViewSet):
 
     def get_serializer_class(self):
         if not isinstance(self.serializer_classes, dict):
-            raise ImproperlyConfigured("serializer_classes should be a dict mapping.")
+            raise ImproperlyConfigured(
+                "serializer_classes should be a dict mapping.")
 
         for serializer in self.serializer_classes:
             if self.action == serializer:

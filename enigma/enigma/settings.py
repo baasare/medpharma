@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'enigma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DB = parse.urlparse(config('DATABASE_URL', default=config('DATABASE_URL', default='DATABASE_URL')))
+DB = parse.urlparse(config('DATABASE_URL', default=config(
+    'DATABASE_URL', default='DATABASE_URL')))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
