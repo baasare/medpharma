@@ -22,7 +22,9 @@ The backend is a REST API built with:
 - PostgreSQL database
 
 ### API Routes:
+
 #### Authentication:
+
 - `POST /api/v1/login` - Login
 - `POST /api/v1/refresh` - Refresh authentication token
 - `POST /api/v1/signup` - Register
@@ -32,6 +34,7 @@ The backend is a REST API built with:
 - `POST /api/v1/password_change` - Change password
 
 #### Consultation:
+
 - `POST /api/consultations` - Create consultation
 - `GET /api/consultations` - Filtered consultations
 - `GET /api/consultations/:id` - Get a single consultation
@@ -65,3 +68,20 @@ Clone the repo:
 
 ```shell
 git clone https://github.com/baasare/medpharma
+```
+
+Backend
+
+```shell
+cd medpharma/enigma
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+Frontend
+
+```shell
+cd medpharma/synergy
+yarn install
+ng serve
+```

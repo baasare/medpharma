@@ -1,0 +1,43 @@
+name: enigma-pull-request
+on:
+  pull_request:
+    paths:
+      - 'enigma/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres_main:
+        image: postgres:14
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: enigma
+        ports:
+          - 5432:5432
+    env:
+      ENVIRONMENT: 'ci'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          cache: 'pipenv'
+      - env:
+          DATABASE_URL: postgres://user:password@localhost:5432/enigma
+          ENVIRONMENT: ci
+        working-directory: enigma
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          pipenv run python manage.py collectstatic --no-input
+          pipenv run coverage run manage.py test --no-input
+          pipenv run coverage xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./enigma/coverage.xml
+          flags: enigma
+          token: ${{ secrets.CODECOV_TOKEN }}

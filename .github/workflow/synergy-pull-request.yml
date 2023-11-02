@@ -1,0 +1,32 @@
+name: synergy-pull-request
+on:
+  pull_request:
+    paths:
+      - 'synergy/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        working-directory: synergy
+        run: npm install --dev
+
+      - name: Run tests
+        working-directory: synergy
+        run: npm test --  --karma-config karma.conf.js --browsers=ChromeHeadless --progress=false --watch=false --code-coverage --source-map=false
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./synergy/coverage/medpharma-angular-frontend/coverage.xml
+          flags: synergy
+          token: ${{ secrets.CODECOV_TOKEN }}
