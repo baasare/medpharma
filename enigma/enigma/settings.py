@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+from urllib import parse
+
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +31,8 @@ SECRET_KEY = config('SECRET_KEY', default='SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [
+    s.strip() for s in v.split(',')], default='*')
 
 # Application definition
 
@@ -40,6 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'authentication',
+
+    'drf_yasg',
+    'easyaudit',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_swagger',
+    'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 MIDDLEWARE = [
@@ -75,10 +88,15 @@ WSGI_APPLICATION = 'enigma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DB = parse.urlparse(config('DATABASE_URL', default=config('DATABASE_URL', default='DATABASE_URL')))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DATABASE_NAME', default='DATABASE_NAME'),
+        'USER': config('DATABASE_USER', default='DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD', default='DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST', default='DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT', default='DATABASE_PORT'),
     }
 }
 
@@ -131,8 +149,19 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = config("EMAIL_HOST_USER")
+SERVER_EMAIL = config("EMAIL_HOST_USER")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Authentication
-# AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = 'accounts/login'
+LOGOUT_URL = 'logout'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
