@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'authentication',
+    'consultation',
 
     'drf_yasg',
     'easyaudit',

@@ -44,7 +44,7 @@ The backend is a REST API built with:
 ### Models:
 
 - `User` - first name, last name, email, phone number, user type.
-- `Consultation` - Date, patient, officer, type, condition, health care provider.
+- `Consultation` - Date, patient, officer, type, condition, health care provider, medical notes, medication.
 
 ## Frontend (synergy)
 
