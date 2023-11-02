@@ -1,4 +1,5 @@
 # Consultation Manager
+[![codecov](https://codecov.io/gh/baasare/medpharma/graph/badge.svg?token=GZT9O4ENIF)](https://codecov.io/gh/baasare/medpharma)
 
 Consultation Manager is a system for health facilities to manage patient consultations.
 Build with Django and Angular.
