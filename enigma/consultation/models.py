@@ -6,9 +6,19 @@ from authentication.models import User
 OUT_PATIENT = 'out_patient'
 IN_PATIENT = 'in_patient'
 
+PENDING = 'pending'
+COMPLETED = 'completed'
+CANCELLED = 'cancelled'
+
 CONSULTATION_TYPE_CHOICES = (
     (OUT_PATIENT, 'Out Patient'),
     (IN_PATIENT, 'In Patient'),
+)
+
+CONSULTATION_STATUS_CHOICES = (
+    (PENDING, 'Pending'),
+    (COMPLETED, 'Completed'),
+    (CANCELLED, 'CANCELLED'),
 )
 
 
@@ -29,6 +39,9 @@ class Consultation(models.Model):
                              null=True, db_index=True)
     medication = models.CharField(
         _('Medication'), max_length=255, null=True, db_index=True)
+    status = models.CharField(_('Consultation Status'), max_length=20, choices=CONSULTATION_STATUS_CHOICES,
+                              default=PENDING,
+                              error_messages={'required': 'Please select a consultation status'})
 
     class Meta:
         verbose_name = _('Consultation')

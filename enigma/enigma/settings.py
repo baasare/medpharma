@@ -103,10 +103,6 @@ DATABASES = {
         'HOST': config('DATABASE_HOST', default='DATABASE_HOST'),
         'PORT': config('DATABASE_PORT', default='DATABASE_PORT'),
     },
-    'test': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 }
 
 # Password validation

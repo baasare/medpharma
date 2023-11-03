@@ -9,7 +9,7 @@ admin.site.index_title = "Consultation Manager | MedPharma"
 
 
 @admin.register(User)
-class UserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User

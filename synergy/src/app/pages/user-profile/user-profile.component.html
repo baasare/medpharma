@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card shadow mb-4">
+      <div class="card-header">
+        <strong class="card-title">{{isAddMode ? "New" : "Edit" }} User</strong>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" formControlName="full_name" class="form-control" id="fullName">
+            <small  *ngIf="f['full_name'].errors?.['required'] && f['full_name']?.touched" class="form-text text-danger-dark"> Required.</small>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" class="form-control" id="email">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+              <small  *ngIf="f['password'].errors?.['minlength'] && f['password']?.touched" class="form-text text-muted">
+                 password strength:
+                <span class="text-danger font-weight-700">
+                  weak
+                </span>
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" id="passwordConfirm" formControlName="confirm_password">
+              <small  *ngIf="f['confirm_password'].errors?.['mustMatch'] && f['confirm_password']?.touched" class="form-text text-danger-dark"> Password must match.</small>
+            </div>
+          </div>
+          <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
