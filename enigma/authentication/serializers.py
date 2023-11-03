@@ -68,9 +68,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "phone_number",
-            "is_active",
             "user_type",
-            "date_joined",
         ]
 
 

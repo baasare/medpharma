@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 from urllib import parse
@@ -91,6 +93,7 @@ WSGI_APPLICATION = 'enigma.wsgi.application'
 
 DB = parse.urlparse(config('DATABASE_URL', default=config(
     'DATABASE_URL', default='DATABASE_URL')))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -99,6 +102,10 @@ DATABASES = {
         'PASSWORD': config('DATABASE_PASSWORD', default='DATABASE_PASSWORD'),
         'HOST': config('DATABASE_HOST', default='DATABASE_HOST'),
         'PORT': config('DATABASE_PORT', default='DATABASE_PORT'),
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
