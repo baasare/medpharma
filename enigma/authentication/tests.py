@@ -69,10 +69,8 @@ class AuthenticationTest(TestCase):
                 user = User(**case['payload'])
                 user.save()
                 self.assertEqual(user.id, case['expectation']['case_1'])
-                self.assertEqual(user.get_absolute_url(),
-                                 case['expectation']['case_2'])
-                self.assertEqual(user.get_email(),
-                                 case['expectation']['case_3'])
+                self.assertEqual(user.get_absolute_url(), case['expectation']['case_2'])
+                self.assertEqual(user.get_email(), case['expectation']['case_3'])
                 self.assertEqual(str(user), case['expectation']['case_4'])
 
     def test_authentication_views(self):
@@ -99,8 +97,7 @@ class AuthenticationTest(TestCase):
 
         for case in cases:
             with self.subTest(case['case']):
-                res_1 = self.client.post(
-                    '/api/v1/account/register', case['payload'])
+                res_1 = self.client.post('/api/v1/account/register', case['payload'])
                 res_2 = self.client.post(
                     '/api/v1/account/login',
                     {
@@ -108,23 +105,17 @@ class AuthenticationTest(TestCase):
                         'password': case['payload']['password'],
                     }
                 )
-                res_3 = self.client.post(
-                    '/api/v1/account/refresh', {'refresh': res_2.data["refresh"]})
+                res_3 = self.client.post('/api/v1/account/refresh', {'refresh': res_2.data["refresh"]})
                 res_4 = self.client.post('/api/v1/account/logout', {'refresh': res_2.data["refresh"]},
                                          **{'HTTP_AUTHORIZATION': f'Bearer {res_3.data["access"]}'})
                 res_5 = self.client.get('/api/v1/account/profile',
                                         **{'HTTP_AUTHORIZATION': f'Bearer {res_3.data["access"]}'})
 
-                self.assertEqual(res_1.status_code,
-                                 case['expectation']['case_1'])
-                self.assertEqual(res_2.status_code,
-                                 case['expectation']['case_2'])
-                self.assertEqual(res_3.status_code,
-                                 case['expectation']['case_3'])
-                self.assertEqual(res_4.status_code,
-                                 case['expectation']['case_4'])
-                self.assertEqual(res_5.status_code,
-                                 case['expectation']['case_5'])
+                self.assertEqual(res_1.status_code, case['expectation']['case_1'])
+                self.assertEqual(res_2.status_code, case['expectation']['case_2'])
+                self.assertEqual(res_3.status_code, case['expectation']['case_3'])
+                self.assertEqual(res_4.status_code, case['expectation']['case_4'])
+                self.assertEqual(res_5.status_code, case['expectation']['case_5'])
 
 
 class UserViewSetTestCase(TestCase):
@@ -172,8 +163,7 @@ class UserViewSetTestCase(TestCase):
         response = self.client.post(self.url, new_user_data, format='json',
                                     **{'HTTP_AUTHORIZATION': f'Bearer {self.token.access_token}'})
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # Verify that a new model instance was created
-        self.assertEqual(User.objects.count(), 2)
+        self.assertEqual(User.objects.count(), 2)  # Verify that a new model instance was created
 
     def test_update_action(self):
         updated_data = {'email': 'kwakye@gmail.com', 'user_type': ADMIN}
@@ -233,10 +223,8 @@ class ConsultationViewSetTestCase(TestCase):
             "officer": self.officer_model,
             "patient": self.patient_model
         }
-        self.consultation_model = Consultation.objects.create(
-            **self.consultation_data)
-        self.serializer = ConsultationSerializer(
-            instance=self.consultation_model)
+        self.consultation_model = Consultation.objects.create(**self.consultation_data)
+        self.serializer = ConsultationSerializer(instance=self.consultation_model)
 
         self.url = '/api/v1/consultation'
 
@@ -274,8 +262,7 @@ class ConsultationViewSetTestCase(TestCase):
         print(response)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.consultation_model.refresh_from_db()
-        self.assertEqual(
-            self.consultation_model.healthcare_provider, 'nationwide')
+        self.assertEqual(self.consultation_model.healthcare_provider, 'nationwide')
 
     def test_destroy_action(self):
         response = self.client.delete(f'{self.url}/{self.consultation_model.id}',
