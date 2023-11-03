@@ -1,10 +1,11 @@
 version = 1
 
 [[analyzers]]
-name = "test-coverage"
-
-[[analyzers]]
 name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["angular"]
 
 [[analyzers]]
 name = "python"
