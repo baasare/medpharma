@@ -1,0 +1,20 @@
+<app-header></app-header>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+                <!--        <li class="breadcrumb-item active">Dashboard</li>-->
+            </ol>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>MedPharma</span></strong>. All Rights Reserved
+    </div>
+</footer><!-- End Footer -->
