@@ -11,9 +11,9 @@ jobs:
       postgres_main:
         image: postgres:14
         env:
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: enigma
+          DATABASE_USER: user
+          DATABASE_PASSWORD: password
+          DATABASE_NAME: enigma
         ports:
           - 5432:5432
     env:
@@ -27,6 +27,8 @@ jobs:
       - env:
           DATABASE_URL: postgres://user:password@localhost:5432/enigma
           ENVIRONMENT: ci
+          EMAIL_HOST_USER: user@gmail.com
+          EMAIL_HOST_PASSWORD: password
         working-directory: enigma
         run: |
           pip install pipenv

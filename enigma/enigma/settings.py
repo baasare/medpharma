@@ -97,16 +97,17 @@ DB = parse.urlparse(config('DATABASE_URL', default=config(
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME', default='DATABASE_NAME'),
-        'USER': config('DATABASE_USER', default='DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD', default='DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_HOST', default='DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT', default='DATABASE_PORT'),
+        'NAME': DB.path[1:],
+        'USER': DB.username,
+        'PASSWORD': DB.password,
+        'HOST': DB.hostname,
+        'PORT': DB.port,
+        # 'NAME': config('DATABASE_NAME', default='DATABASE_NAME'),
+        # 'USER': config('DATABASE_USER', default='DATABASE_USER'),
+        # 'PASSWORD': config('DATABASE_PASSWORD', default='DATABASE_PASSWORD'),
+        # 'HOST': config('DATABASE_HOST', default='DATABASE_HOST'),
+        # 'PORT': config('DATABASE_PORT', default='DATABASE_PORT'),
     },
-    'test': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 }
 
 # Password validation
