@@ -1,22 +1,107 @@
-<div class="wrapper vh-100">
-  <div class="row align-items-center h-100">
-    <form (ngSubmit)="RegisterUser()" [formGroup]="registrationForm" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
-      <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-        <span class="avatar mt-2">
-                  <img src="./assets/img/logo.png" alt="..." style="height: 100px" class="avatar-img rounded-circle">
-                </span>
-      </a>
-      <h3 class="h3 mb-3">Sign in</h3>
-      <div class="form-group">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" formControlName="email" class="form-control form-control-lg" placeholder="Email address" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" formControlName="password" class="form-control form-control-lg" placeholder="Password" autocomplete="off">
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-      <p class="mt-5 mb-3 text-muted">© {{ currentDate | date: "yyyy" }}</p>
-    </form>
-  </div>
+<div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="d-flex justify-content-center py-4">
+                        <a [routerLink]="['/']" class="logo d-flex align-items-center w-auto">
+                            <img src="./assets/img/medpharma_logo.png" alt="">
+                        </a>
+                    </div><!-- End Logo -->
+
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <div class="pt-4 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">Register</h5>
+                            </div>
+
+                            <form class="row g-3 needs-validation" (ngSubmit)="registerUser()"
+                                  [formGroup]="registrationForm">
+
+                                <div class="col-12">
+                                    <label for="yourUsername" class="form-label">Email</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" name="email" formControlName="email" class="form-control"
+                                               id="yourUsername"
+                                               required>
+                                        <div class="invalid-feedback">Please enter your email.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourFirstName" class="form-label">First Name</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" name="first_name" formControlName="first_name"
+                                               class="form-control"
+                                               id="yourFirstName"
+                                               required>
+                                        <div class="invalid-feedback">Please enter your first name.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourLastName" class="form-label">Last Name</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" name="last_name" formControlName="last_name"
+                                               class="form-control"
+                                               id="yourLastName"
+                                               required>
+                                        <div class="invalid-feedback">Please enter your last name.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourPhoneNumber" class="form-label">Phone Number</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" name="phone_number" formControlName="phone_number"
+                                               class="form-control"
+                                               id="yourPhoneNumber"
+                                               required>
+                                        <div class="invalid-feedback">Please enter your phone number.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourPassword" class="form-label">Password</label>
+                                    <input type="password" name="password" formControlName="password"
+                                           class="form-control" id="yourPassword"
+                                           required>
+                                    <div class="invalid-feedback">Please enter your password!</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="accountType" class="form-label">Account Type</label>
+                                    <select formControlName="user_type" class="form-select"
+                                            aria-label="Default select example" id="accountType">
+                                        <option selected [value]="'patient'">Patient</option>
+                                        <option [value]="'officer'">Officer</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit">Signup</button>
+                                </div>
+                                <div class="col-12">
+                                    <p class="small mb-0">Already have account? <a [routerLink]="['/login/']">Login</a>
+                                    </p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="copyright">
+                        &copy; Copyright <strong><span>MedPharma</span></strong>.{{ currentDate | date: "yyyy" }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
 </div>
