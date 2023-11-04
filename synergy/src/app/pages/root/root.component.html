@@ -1,28 +1,182 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
-      <div class="file-container">
-        <div class="file-panel mt-4">
-          <h2 class="mb-3 border-bottom">Products</h2>
-          <div class="row my-4 pb-4">
-            <div *ngFor="let item of products | keyvalue" class="col-md-3">
-              <a [routerLink]="['/root/', encrypt(item.key), ]" [state]="{ directory : item.key }"
-                 style="text-decoration: none">
-                <div class="card shadow text-center mb-4">
-                  <div class="card-body file">
-                    <div class="circle circle-lg bg-secondary my-4">
-                      <span class="fe fe-folder fe-24 text-white"></span>
+<section class="section dashboard">
+    <div class="col-lg-12">
+        <div class="row">
+
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card">
+
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>Filter</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">Today</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
                     </div>
-                  </div>
-                  <div class="card-footer bg-transparent border-0 fname">
-                    <strong><span class="dot dot-md bg-success mr-2"></span>{{item.value}}</strong>
-                  </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Sales <span>| Today</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>145</h6>
+                                <span class="text-success small pt-1 fw-bold">12%</span> <span
+                                    class="text-muted small pt-2 ps-1">increase</span>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-              </a>
             </div>
-          </div>
+
+
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card revenue-card">
+
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>Filter</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">Today</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>$3,264</h6>
+                                <span class="text-success small pt-1 fw-bold">8%</span> <span
+                                    class="text-muted small pt-2 ps-1">increase</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-xxl-4 col-xl-12">
+
+                <div class="card info-card customers-card">
+
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>Filter</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">Today</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>1244</h6>
+                                <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                                    class="text-muted small pt-2 ps-1">decrease</span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Datatables</h5>
+                        <p>Add lightweight datatables to your project with using the <a
+                                href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple
+                            DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to
+                            conver to a datatable</p>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Start Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Brandon Jacob</td>
+                                <td>Designer</td>
+                                <td>28</td>
+                                <td>2016-05-25</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Bridie Kessler</td>
+                                <td>Developer</td>
+                                <td>35</td>
+                                <td>2014-12-05</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Ashleigh Langosh</td>
+                                <td>Finance</td>
+                                <td>45</td>
+                                <td>2011-08-12</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Angus Grady</td>
+                                <td>HR</td>
+                                <td>34</td>
+                                <td>2012-06-11</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Raheem Lehner</td>
+                                <td>Dynamic Division Officer</td>
+                                <td>47</td>
+                                <td>2011-04-19</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </div><!-- End Left side columns -->
+</section>

@@ -10,10 +10,6 @@ export class TokenService {
   constructor() {
   }
 
-  setAccessToken(accessToken: string) {
-    sessionStorage.setItem(environment.access_token, accessToken);
-  }
-
   setToken(token: TokenModel) {
     sessionStorage.setItem(environment.access_token, token.access);
     sessionStorage.setItem(environment.refresh_token, token.refresh);

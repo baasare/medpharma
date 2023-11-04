@@ -40,6 +40,8 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.user_type in [ADMIN, SUPER_ADMIN]:
             self.is_staff = True
+        if self.user_type is [OFFICER, ADMIN, SUPER_ADMIN]:  # These accounts need approval before activation
+            self.is_active = False
         super(User, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

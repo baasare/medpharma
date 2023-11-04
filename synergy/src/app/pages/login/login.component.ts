@@ -6,53 +6,52 @@ import {AuthService} from 'src/app/services/auth/auth.service';
 import {TokenService} from 'src/app/services/auth/token.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  currentDate: Date = new Date();
+    currentDate: Date = new Date();
 
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  submitted = false;
-
-  constructor(
-    public router: Router,
-    public authService: AuthService,
-    private formBuilder: FormBuilder,
-    private tokenService: TokenService,
-    // private notifyService: NotificationService,
-  ) {
-    this.loginForm = this.formBuilder.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: [''],
-      }
-    );
-
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-  }
-
-  loginUser() {
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (res: TokenModel) => {
-        this.tokenService.setToken(res);
-        this.authService.profile();
-      },
-      error: err => {
-        // this.notifyService.showNotification('danger', err.error.detail);
-        console.log(err);
-      }
+    loginForm: FormGroup = new FormGroup({
+        email: new FormControl(''),
+        password: new FormControl(''),
     });
-  }
+
+    submitted = false;
+
+    constructor(
+        public router: Router,
+        public authService: AuthService,
+        private formBuilder: FormBuilder,
+        private tokenService: TokenService,
+    ) {
+        this.loginForm = this.formBuilder.group(
+            {
+                email: ['', [Validators.required, Validators.email]],
+                password: [''],
+            }
+        );
+
+    }
+
+    ngOnDestroy(): void {
+    }
+
+    ngOnInit(): void {
+    }
+
+    loginUser() {
+        this.authService.login(this.loginForm.value).subscribe({
+            next: (res: TokenModel) => {
+                this.tokenService.setToken(res);
+                this.authService.profile();
+            },
+            error: err => {
+                console.log(err);
+            }
+        });
+    }
+
 
 }

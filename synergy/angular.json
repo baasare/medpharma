@@ -31,12 +31,11 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/css/styles.css",
               "src/assets/vendor/bootstrap/css/bootstrap.css",
               "src/assets/vendor/boxicons/css/animations.css",
               "src/assets/vendor/boxicons/css/boxicons.css",
               "src/assets/vendor/boxicons/css/transformations.css",
-              "src/assets/vendor/simple-datatables/styles.css",
+              "src/assets/vendor/simple-datatables/style.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css",
               "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css"
@@ -44,8 +43,6 @@
             "scripts": [
               "src/assets/js/main.js",
               "src/assets/vendor/bootstrap/js/bootstrap.js",
-              "src/assets/vendor/chartjs/chart.js",
-              "src/assets/vendor/quill/quill.js",
               "src/assets/vendor/simple-datatables/simple-datatables.js",
               "node_modules/jszip/dist/jszip.js",
               "node_modules/datatables.net/js/jquery.dataTables.min.js",
