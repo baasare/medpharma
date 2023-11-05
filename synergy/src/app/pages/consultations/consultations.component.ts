@@ -1,21 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {Subject} from "rxjs";
-import Swal from "sweetalert2";
+import {ChangeDetectionStrategy, OnInit, Component, ChangeDetectorRef} from '@angular/core';
 import {ConsultationService} from "../../services/consultation/consultation.service";
+import Swal from "sweetalert2";
+import {Subject} from "rxjs";
 import {Consultation} from "../../models/consultation.model";
 
 @Component({
-  selector: 'app-consultations',
+  selector: 'app-root',
   templateUrl: './consultations.component.html',
-  styleUrls: ['./consultations.component.scss']
+  styleUrls: ['./consultations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ConsultationsComponent implements OnInit {
+
   allConsultations!: Consultation[];
 
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(public consultationService: ConsultationService) {
+  consultationStatistics: { [id: string]: number; } = {
+    "pending": 0,
+    "completed": 0,
+    "cancelled": 0
+  }
+
+  consultation_type: { [id: string]: string; } = {
+    "in_patient": "In Patient",
+    "out_patient": "Out Patient"
+  };
+
+  consultation_status: { [id: string]: string; } = {
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  };
+
+  constructor(public consultationService: ConsultationService, private changeDetectorRef: ChangeDetectorRef,) {
   }
 
   ngOnInit() {
@@ -24,17 +44,23 @@ export class ConsultationsComponent implements OnInit {
       pageLength: 10,
       processing: true,
       scrollX: false,
-      scrollY: false,
+      scrollY: true,
     };
-    this.fetchUsers();
+    this.fetchConsultations();
 
   }
 
-  fetchUsers() {
+  fetchConsultations() {
     this.consultationService.getConsultations().subscribe({
       next: (consultations: Consultation[]) => {
         this.allConsultations = consultations;
+        this.consultationStatistics['pending'] = this.allConsultations.filter((consultation) => consultation.status === 'pending').length;
+        this.consultationStatistics['completed'] = this.allConsultations.filter((consultation) => consultation.status === 'completed').length;
+        this.consultationStatistics['cancelled'] = this.allConsultations.filter((consultation) => consultation.status === 'cancelled').length;
+
         this.dtTrigger.next(void 0);
+        this.changeDetectorRef.detectChanges();
+        console.log(this.allConsultations)
       },
       error: (err: any) => {
         console.log(err);
@@ -75,6 +101,17 @@ export class ConsultationsComponent implements OnInit {
   }
 
 
+  confirmDeleteDialog(id: String) {
+    this.consultationService.removeConsultation(id).subscribe({
+      next: () => {
+        this.ngOnInit();
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
   humanize(str: String) {
     let i: number;
     const frags = str.split('_');
@@ -82,5 +119,17 @@ export class ConsultationsComponent implements OnInit {
       frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
     }
     return frags.join(' ');
+  }
+
+  checkStatus(isActive: boolean) {
+    if (isActive) {
+      return 'Active';
+    }
+
+    return 'Inactive';
+  }
+
+  getConsultationType() {
+
   }
 }

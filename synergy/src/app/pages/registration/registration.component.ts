@@ -28,7 +28,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         public router: Router,
         public authService: AuthService,
         private formBuilder: FormBuilder,
-        private tokenService: TokenService,
         // private notifyService: NotificationService,
     ) {
         this.registrationForm = this.formBuilder.group(
@@ -54,8 +53,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     registerUser() {
         this.authService.signup(this.registrationForm.value).subscribe({
           next: (res: TokenModel) => {
-            this.tokenService.setToken(res);
-            this.authService.profile();
+            return this.router.navigate(['/login']);
           },
           error: err => {
             // this.notifyService.showNotification('danger', err.error.detail);

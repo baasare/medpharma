@@ -54,7 +54,7 @@ export class AuthService {
       .subscribe({
         next: (user: User) => {
           this.localStore.saveData(environment.user_profile, JSON.stringify(user));
-          this.router.navigate(['/root']);
+          this.router.navigate(['/']);
         },
         error: err => {
           console.log(err);
