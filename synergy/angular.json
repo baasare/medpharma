@@ -43,6 +43,7 @@
             "scripts": [
               "src/assets/js/main.js",
               "src/assets/vendor/bootstrap/js/bootstrap.js",
+              "src/assets/vendor/tinymce/tinymce.js",
               "src/assets/vendor/simple-datatables/simple-datatables.js",
               "node_modules/jszip/dist/jszip.js",
               "node_modules/datatables.net/js/jquery.dataTables.min.js",

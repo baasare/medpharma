@@ -28,7 +28,7 @@ export class RoleGuard {
         if (roles.includes(userRole)) {
           return true;
         } else {
-          return this.router.navigate(['/root']);
+          return this.router.navigate(['/']);
         }
       }
     }

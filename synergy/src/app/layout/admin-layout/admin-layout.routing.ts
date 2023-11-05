@@ -1,5 +1,4 @@
 import {Routes} from '@angular/router';
-import {RootComponent} from "../../pages/root/root.component";
 import {UsersComponent} from "../../pages/users/users.component";
 import {UserProfileComponent} from "../../pages/user-profile/user-profile.component";
 import {RoleGuard} from "../../services/auth/role.guard";
@@ -8,8 +7,8 @@ import {ConsultationsDetailsComponent} from "../../pages/consultations-details/c
 
 export const AdminLayoutRoutes: Routes = [
   {
-    path: 'root',
-    component: RootComponent,
+    path: '',
+    component: ConsultationsComponent,
   },
   {
     path: 'users',
@@ -29,16 +28,15 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'consultations',
     component: ConsultationsComponent,
-    // canActivate: [RoleGuard.forRoles('admin', 'super_admin')],
   },
   {
     path: 'consultations/add',
     component: ConsultationsDetailsComponent,
-    // canActivate: [RoleGuard.forRoles('admin', 'super_admin')],
+    canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
   },
   {
     path: 'consultations/edit/:id',
     component: ConsultationsDetailsComponent,
-    // canActivate: [RoleGuard.forRoles('admin', 'super_admin')],
+    canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
   },
 ];

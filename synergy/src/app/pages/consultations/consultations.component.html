@@ -1,1 +1,82 @@
 
+<section class="section dashboard">
+  <div class="col-lg-12">
+    <div class="row">
+
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h5 class="card-title">Pending</h5>
+            <div class="d-flex align-items-center">
+              <h6>{{this.consultationStatistics['pending'] }}</h6>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h5 class="card-title">Completed</h5>
+            <div class="d-flex align-items-center">
+              <h6>{{this.consultationStatistics['completed'] }}</h6>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h5 class="card-title">Cancelled/Missed</h5>
+            <div class="d-flex align-items-center">
+              <h6>{{this.consultationStatistics['cancelled'] }}</h6>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+            <h5 class="card-title">Consultations</h5>
+            <span><button [routerLink]="['/consultations/add' ]" type="button" class="btn btn-primary rounded-pill">New Consultation</button></span>
+
+            </div>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+              <thead>
+              <tr>
+                <th>Patient</th>
+                <th scope="col">Officer</th>
+                <th scope="col">Consultation Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let consultation of allConsultations">
+                <td>{{ consultation.patient.first_name | titlecase  }} {{ consultation.patient.last_name | titlecase  }}</td>
+                <td>{{ consultation.officer.first_name | titlecase  }} {{ consultation.officer.last_name | titlecase  }}</td>
+                <td>{{ this.consultation_type[consultation.consultation_type] }}</td>
+                <td>{{ this.consultation_status[consultation.status] }}</td>
+                <td>{{ consultation.date | date: 'MMMM d, y • h:mm:ss a' }}</td>
+              </tr>
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

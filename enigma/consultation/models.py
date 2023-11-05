@@ -18,7 +18,7 @@ CONSULTATION_TYPE_CHOICES = (
 CONSULTATION_STATUS_CHOICES = (
     (PENDING, 'Pending'),
     (COMPLETED, 'Completed'),
-    (CANCELLED, 'CANCELLED'),
+    (CANCELLED, 'Cancelled'),
 )
 
 

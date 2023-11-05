@@ -3,7 +3,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RootComponent} from "../../pages/root/root.component";
 import {AdminLayoutRoutes} from "./admin-layout.routing";
 import {ComponentsModule} from "../../components/components.module";
 import {UsersComponent} from "../../pages/users/users.component";
@@ -23,7 +22,6 @@ import {ConsultationsDetailsComponent} from "../../pages/consultations-details/c
     DataTablesModule
   ],
   declarations: [
-    RootComponent,
     UsersComponent,
     UserProfileComponent,
     ConsultationsComponent,
