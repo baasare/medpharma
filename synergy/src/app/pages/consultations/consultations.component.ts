@@ -53,14 +53,13 @@ export class ConsultationsComponent implements OnInit {
   fetchConsultations() {
     this.consultationService.getConsultations().subscribe({
       next: (consultations: Consultation[]) => {
-        this.allConsultations = consultations;
+        this.allConsultations = consultations.reverse();
         this.consultationStatistics['pending'] = this.allConsultations.filter((consultation) => consultation.status === 'pending').length;
         this.consultationStatistics['completed'] = this.allConsultations.filter((consultation) => consultation.status === 'completed').length;
         this.consultationStatistics['cancelled'] = this.allConsultations.filter((consultation) => consultation.status === 'cancelled').length;
 
         this.dtTrigger.next(void 0);
         this.changeDetectorRef.detectChanges();
-        console.log(this.allConsultations)
       },
       error: (err: any) => {
         console.log(err);

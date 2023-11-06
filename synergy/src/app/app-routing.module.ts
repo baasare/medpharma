@@ -9,6 +9,7 @@ import {LoginGuard} from './services/auth/login.guard';
 import {AdminLayoutComponent} from "./layout/admin-layout/admin-layout.component";
 import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {QuillModule} from "ngx-quill";
 
 const routes: Routes = [
   {
@@ -46,8 +47,9 @@ const routes: Routes = [
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes, {
-      useHash: false,
-    })
+      useHash: true,
+    }),
+    QuillModule.forRoot(),
   ],
   exports: [],
 })

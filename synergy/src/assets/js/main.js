@@ -1,10 +1,3 @@
-/**
-* Template Name: MedPharma
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: #nice-admin-bootstrap-admin-html-template/
-* Author: MedPharma.com
-* License: #license/
-*/
 (function() {
   "use strict";
 

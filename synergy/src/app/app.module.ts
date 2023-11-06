@@ -20,6 +20,7 @@ import {CommonModule, LocationStrategy, PathLocationStrategy} from "@angular/com
 import {BnNgIdleService} from 'bn-ng-idle';
 import {AuditLogService} from "./services/audit-log/audit-log.service";
 import {UserService} from "./services/user/user.service";
+import {QuillModule} from "ngx-quill";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {UserService} from "./services/user/user.service";
     HttpClientModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     AuthService,

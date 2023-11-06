@@ -38,7 +38,11 @@
               "src/assets/vendor/simple-datatables/style.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css",
-              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css"
+              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.bubble.css",
+              "node_modules/quill/dist/quill.snow.css",
+              "node_modules/quill-mention/dist/quill.mention.min.css"
             ],
             "scripts": [
               "src/assets/js/main.js",
@@ -52,7 +56,8 @@
               "node_modules/datatables.net-buttons/js/buttons.colVis.js",
               "node_modules/datatables.net-buttons/js/buttons.flash.js",
               "node_modules/datatables.net-buttons/js/buttons.html5.js",
-              "node_modules/datatables.net-buttons/js/buttons.print.js"
+              "node_modules/datatables.net-buttons/js/buttons.print.js",
+              "node_modules/quill/dist/quill.min.js"
             ]
           },
           "configurations": {
