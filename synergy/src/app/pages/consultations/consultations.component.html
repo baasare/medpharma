@@ -1,4 +1,3 @@
-
 <section class="section dashboard">
   <div class="col-lg-12">
     <div class="row">
@@ -44,20 +43,21 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title">Consultations</h5>
-            <span><button [routerLink]="['/consultations/add' ]" type="button" class="btn btn-primary rounded-pill">New Consultation</button></span>
+              <h5 class="card-title">Consultations</h5>
+              <span><button [routerLink]="['consultations/add/' ]" type="button" class="btn btn-primary rounded-pill">New Consultation</button></span>
 
             </div>
 
             <!-- Table with stripped rows -->
-            <table class="table datatable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+            <table class="table datatable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
               <thead>
               <tr>
                 <th>Patient</th>
-                <th scope="col">Officer</th>
-                <th scope="col">Consultation Type</th>
-                <th scope="col">Status</th>
-                <th scope="col">Date</th>
+                <th>Officer</th>
+                <th>Consultation Type</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Edit</th>
               </tr>
               </thead>
               <tbody>
@@ -67,6 +67,9 @@
                 <td>{{ this.consultation_type[consultation.consultation_type] }}</td>
                 <td>{{ this.consultation_status[consultation.status] }}</td>
                 <td>{{ consultation.date | date: 'MMMM d, y • h:mm:ss a' }}</td>
+                <td>
+                  <button [routerLink]="['consultations/edit/', consultation.id ]" type="button" class="btn btn-info"><i class="bi bi-pencil"></i></button>
+                </td>
               </tr>
               </tbody>
             </table>

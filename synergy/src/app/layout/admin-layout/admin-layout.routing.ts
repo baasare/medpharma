@@ -32,11 +32,11 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'consultations/add',
     component: ConsultationsDetailsComponent,
-    canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
+    // canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
   },
   {
     path: 'consultations/edit/:id',
     component: ConsultationsDetailsComponent,
-    canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
+    // canActivate: [RoleGuard.forRoles('admin', 'super_admin', 'officer')],
   },
 ];

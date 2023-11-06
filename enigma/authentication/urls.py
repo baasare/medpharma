@@ -11,6 +11,8 @@ router.register('audit-log', LoginEventViewSet, basename='login_event')
 urlpatterns = [
     path('account/login', LoginAuthView.as_view(), name='token_obtain_pair'),
     path('account/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('account/users/patients', UserViewSet.as_view({'get': 'list_patients'}), name='list-patients'),
+
 ]
 
 urlpatterns = urlpatterns + router.urls

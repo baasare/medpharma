@@ -19,6 +19,10 @@ export class UserService {
     return this.http.get<any>(`${environment.api_backend}/account/users`);
   }
 
+  getPatients() {
+    return this.http.get<any>(`${environment.api_backend}/account/users/patients`);
+  }
+
   getUser(id: string) {
     return this.http
       .get<any>(`${environment.api_backend}/account/users/${id}`);

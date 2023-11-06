@@ -75,7 +75,7 @@ Backend
 
 ```shell
 cd medpharma/enigma
-pip install -r requirements.txt
+pipenv install
 python manage.py runserver
 ```
 

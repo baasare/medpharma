@@ -13,6 +13,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import TokenError
 
+from authentication.models import PATIENT
 from authentication.permissions import IsSuperUser
 from authentication.serializers import UserSerializer, ProfileSerializer, PasswordChangeSerializer, EmptySerializer, \
     LogoutSerializer, LoginSerializer, PasswordChangeRequestSerializer, \
@@ -148,6 +149,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.exclude(is_superuser=True)
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated, IsSuperUser]
+
+    # Custom view method
+    def list_patients(self, request):
+        users = User.objects.filter(user_type=PATIENT)
+        serializer = self.get_serializer(users, many=True)
+        return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
         users = User.objects.all()
